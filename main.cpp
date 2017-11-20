@@ -8,15 +8,13 @@
 #include <QDebug>
 #include <QtCore/QDir>
 #include "3DModel/Model.h"
-
+#include "Canvas/Canvas.h"
 
 void parseObjFile(const QString &fileName,
                   QStringList comments,
-                  QVector<QOpenGLTriangle3D> triangles) {
+                  QVector<QOpenGLTriangle3D> &triangles) {
     comments.clear();
     triangles.clear();
-    qDebug() << fileName;
-    qDebug() << QDir::currentPath();
     QFile file(fileName);
     if (file.exists()) {
         if (file.open(QFile::ReadOnly | QFile::Text)) {
@@ -74,14 +72,12 @@ void parseObjFile(const QString &fileName,
                         triangle.p2Normal = vn.at(lineParts.at(2).split("/").at(2).toInt() - 1);
                         triangle.p3Normal = vn.at(lineParts.at(3).split("/").at(2).toInt() - 1);
 
-
-                        qDebug() << i++;
                         triangles.append(triangle);
                     }
 
                 }
             }
-
+            qDebug() << triangles.length();
             file.close();
         }
     }
@@ -90,7 +86,7 @@ void parseObjFile(const QString &fileName,
 
 int main(int argc, char **argv) {
 
-//    QApplication application(argc, argv);
+    QApplication application(argc, argv);
 
     QString filename = "Porsche_911_GT2.obj";
     QStringList comments;
@@ -98,11 +94,17 @@ int main(int argc, char **argv) {
 
     parseObjFile(filename, comments, vector);
 
+    qDebug() << vector.length();
+
     Model model(vector);
 
+    Canvas canvas(model);
 
-    return 0;
-//            application.exec();
+    canvas.setFixedSize(1024, 768);
+
+    canvas.show();
+
+    return application.exec();
 }
 
 

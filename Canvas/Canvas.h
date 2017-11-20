@@ -11,10 +11,12 @@
 
 class Canvas : public QWidget {
 public:
-    Canvas(Model model);
+    explicit Canvas(Model model);
 
 private:
-    Model model;
+    Model frontView;
+    Model sideView;
+    Model topView;
 protected:
     void paintEvent(QPaintEvent *event) override;
 

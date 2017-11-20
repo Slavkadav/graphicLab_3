@@ -4,7 +4,7 @@ set(CMAKE_PREFIX_PATH "C:\\Qt\\5.9.2\\mingw53_32")
 set(CMAKE_CXX_STANDARD 11)
 
 
-set(SOURCE_FILES main.cpp AffineTranslate/AffineTransform.cpp AffineTranslate/AffineTransform.h 3DModel/Model.cpp 3DModel/Model.h Canvas/Canvas.cpp Canvas/Canvas.h AffineTranslate/Vector/Vector.cpp AffineTranslate/Vector/Vector.h AffineTranslate/Matrix/Matrix.cpp AffineTranslate/Matrix/Matrix.h)
+set(SOURCE_FILES main.cpp AffineTranslate/AffineTransform.cpp AffineTranslate/AffineTransform.h 3DModel/Model.cpp 3DModel/Model.h Canvas/Canvas.cpp Canvas/Canvas.h AffineTranslate/Vector/Vector3D.cpp AffineTranslate/Vector/Vector3D.h AffineTranslate/Matrix/Matrix.cpp AffineTranslate/Matrix/Matrix.h)
 add_executable(Graphic_lab_2 ${SOURCE_FILES})
 
 # включаем поиск библиотек с использованием find_package()

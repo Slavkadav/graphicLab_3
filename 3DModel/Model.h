@@ -9,6 +9,8 @@
 #include <QtGui/QVector3D>
 #include <QtCore/QVector>
 #include <QtGui/QPainter>
+#include "../AffineTranslate/Vector/Vector3D.h"
+#include "../AffineTranslate/Matrix/Matrix.h"
 
 struct QOpenGLTriangle3D {
     QVector3D p1;
@@ -24,12 +26,16 @@ struct QOpenGLTriangle3D {
 
 class Model {
 
-    QVector<QOpenGLTriangle3D> model;
-
+    QVector<QOpenGLTriangle3D> polygons;
+    Matrix transform;
 public:
-    Model(const QVector<QOpenGLTriangle3D> &model);
+    explicit Model(const QVector<QOpenGLTriangle3D> &model);
+
+    Model();
 
     void draw(QPainter *painter);
+
+    void setTransform(const Matrix &transform);
 };
 
 

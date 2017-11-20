@@ -6,8 +6,8 @@
 #define GRAPHIC_LAB_2_VECTOR_H
 
 
-class Vector {
-    double x, y, z;
+class Vector3D {
+    double x{}, y{}, z{};
 public:
     double getX() const;
 
@@ -21,16 +21,17 @@ public:
 
     void setZ(double z);
 
-private:
-    Vector(double v);
+    Vector3D() = default;;
 
-    Vector(const Vector &v);
+    explicit Vector3D(double v);
 
-    Vector(double vx, double vy, double vz);
+//    Vector3D(const Vector3D &v);
 
-    Vector &operator=(double f);
+    Vector3D(double vx, double vy, double vz);
 
-    friend double operator&(const Vector &u, const Vector &v);
+    Vector3D &operator=(double f);
+
+    friend double operator&(const Vector3D &u, const Vector3D &v);
 };
 
 

@@ -82,8 +82,8 @@ Matrix operator*(const Matrix &A, const Matrix &B) {
         for (int j = 0; j < 4; ++j) {
             double sum = 0;
             for (int k = 0; k < 4; ++k) {
-                sum += res.matr[i][k] * A.matr[k][j];
-                matr[i][j] = sum;
+                sum += A.matr[i][k] * B.matr[k][j];
+                res.matr[i][j] = sum;
             }
         }
     }
@@ -100,15 +100,15 @@ Matrix operator*(const Matrix &A, const double v) {
     return res;
 }
 
-Vector operator*(const Matrix &m, const Vector &v) {
-    Vector res;
+Vector3D operator*(const Matrix &m, const Vector3D &v) {
+    Vector3D res;
     res.setX(v.getX() * m.matr[0][0] + v.getY() * m.matr[0][1] + v.getZ() * m.matr[0][2] + m.matr[0][3]);
     res.setY(v.getX() * m.matr[1][0] + v.getY() * m.matr[1][1] + v.getZ() * m.matr[1][2] + m.matr[1][3]);
     res.setZ(v.getX() * m.matr[2][0] + v.getY() * m.matr[2][1] + v.getZ() * m.matr[2][2] + m.matr[2][3]);
     return res;
 }
 
-Matrix translate(const Vector &loc) {
+Matrix Matrix::translate(const Vector3D &loc) {
     Matrix res(1);
     res.matr[0][3] = loc.getX();
     res.matr[1][3] = loc.getY();
@@ -116,7 +116,7 @@ Matrix translate(const Vector &loc) {
     return res;
 }
 
-Matrix scale(const Vector &v) {
+Matrix Matrix::scale(const Vector3D &v) {
     Matrix res(1);
     res.matr[0][0] = v.getX();
     res.matr[1][1] = v.getY();
@@ -124,7 +124,7 @@ Matrix scale(const Vector &v) {
     return res;
 }
 
-Matrix rotateX(double angle) {
+Matrix Matrix::rotateX(double angle) {
     Matrix res(1);
     double phi = RADIAN(angle);
     double cosinus = cos(phi);
@@ -136,7 +136,7 @@ Matrix rotateX(double angle) {
     return res;
 }
 
-Matrix rotateY(double angle) {
+Matrix Matrix::rotateY(double angle) {
     Matrix res(1);
     double phi = RADIAN(angle);
     double cosinus = cos(phi);
@@ -148,7 +148,7 @@ Matrix rotateY(double angle) {
     return res;
 }
 
-Matrix rotateZ(double angle) {
+Matrix Matrix::rotateZ(double angle) {
     Matrix res(1);
     double phi = RADIAN(angle);
     double cosinus = cos(phi);

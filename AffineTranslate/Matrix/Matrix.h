@@ -6,7 +6,7 @@
 #define GRAPHIC_LAB_2_MATRIX_H
 
 
-#include "../Vector/Vector.h"
+#include "../Vector/Vector3D.h"
 
 class Matrix {
 public:
@@ -32,17 +32,18 @@ public:
 
     friend Matrix operator*(const Matrix &, double);
 
-    friend Vector operator*(const Matrix &, const Vector &);
+    friend Vector3D operator*(const Matrix &, const Vector3D &);
+
+    static Matrix translate(const Vector3D &);
+
+    static Matrix scale(const Vector3D &);
+
+    static Matrix rotateX(double);
+
+    static Matrix rotateY(double);
+
+    static Matrix rotateZ(double);
 };
 
-Matrix translate(const Vector &);
-
-Matrix scale(const Vector &);
-
-Matrix rotateX(double);
-
-Matrix rotateY(double);
-
-Matrix rotateZ(double);
 
 #endif //GRAPHIC_LAB_2_MATRIX_H
