@@ -124,6 +124,14 @@ Matrix Matrix::scale(const Vector3D &v) {
     return res;
 }
 
+Matrix Matrix::scale(int size) {
+    Matrix res(1);
+    res.matr[0][0] = size;
+    res.matr[1][1] = size;
+    res.matr[2][2] = size;
+    return res;
+}
+
 Matrix Matrix::rotateX(double angle) {
     Matrix res(1);
     double phi = RADIAN(angle);

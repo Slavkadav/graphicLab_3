@@ -17,8 +17,13 @@ private:
     Model frontView;
     Model sideView;
     Model topView;
+    Model rollView;
+    double angleX = 0;
+    double angleY = 0;
 protected:
     void paintEvent(QPaintEvent *event) override;
+
+    void keyPressEvent(QKeyEvent *event) override;
 
 };
 

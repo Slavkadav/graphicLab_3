@@ -43,6 +43,8 @@ public:
     static Matrix rotateY(double);
 
     static Matrix rotateZ(double);
+
+    static Matrix scale(int size);
 };
 
 
