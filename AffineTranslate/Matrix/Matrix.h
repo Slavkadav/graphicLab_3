@@ -45,6 +45,8 @@ public:
     static Matrix rotateZ(double);
 
     static Matrix scale(int size);
+
+    static Matrix angleProjection(double k, double alpha);
 };
 
 

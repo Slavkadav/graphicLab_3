@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.8)
 project(Graphic_lab_2)
-set(CMAKE_PREFIX_PATH "C:\\Qt\\5.9.2\\mingw53_32")
+set(CMAKE_PREFIX_PATH "/home/dev/Qt5.9.1/5.9.1/gcc_64")
 set(CMAKE_CXX_STANDARD 11)
 
 
-set(SOURCE_FILES main.cpp AffineTranslate/AffineTransform.cpp AffineTranslate/AffineTransform.h 3DModel/Model.cpp 3DModel/Model.h Canvas/Canvas.cpp Canvas/Canvas.h AffineTranslate/Vector/Vector3D.cpp AffineTranslate/Vector/Vector3D.h AffineTranslate/Matrix/Matrix.cpp AffineTranslate/Matrix/Matrix.h)
+set(SOURCE_FILES main.cpp 3DModel/Model.cpp 3DModel/Model.h Canvas/Canvas.cpp Canvas/Canvas.h AffineTranslate/Vector/Vector3D.cpp AffineTranslate/Vector/Vector3D.h AffineTranslate/Matrix/Matrix.cpp AffineTranslate/Matrix/Matrix.h)
 add_executable(Graphic_lab_2 ${SOURCE_FILES})
 
 # включаем поиск библиотек с использованием find_package()
@@ -22,4 +22,4 @@ target_link_libraries(${PROJECT_NAME}
         )
 set(RESOURCE_FILES Porsche_911_GT2.obj)
 
-FILE(COPY Porsche_911_GT2.obj Rock1.obj DESTINATION "${CMAKE_BINARY_DIR}")
+FILE(COPY Porsche_911_GT2.obj DESTINATION "${CMAKE_BINARY_DIR}")

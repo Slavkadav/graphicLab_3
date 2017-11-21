@@ -10,9 +10,7 @@
 #include "3DModel/Model.h"
 #include "Canvas/Canvas.h"
 
-void parseObjFile(const QString &fileName,
-                  QStringList comments,
-                  QVector<QOpenGLTriangle3D> &triangles) {
+void parseObjFile(const QString &fileName, QStringList comments, QVector<QOpenGLTriangle3D> &triangles) {
     comments.clear();
     triangles.clear();
     QFile file(fileName);
@@ -94,14 +92,10 @@ int main(int argc, char **argv) {
 
     parseObjFile(filename, comments, vector);
 
-    qDebug() << vector.length();
-
     Model model(vector);
 
     Canvas canvas(model);
-
     canvas.setFixedSize(1024, 768);
-
     canvas.show();
 
     return application.exec();

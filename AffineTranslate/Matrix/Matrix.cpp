@@ -167,3 +167,12 @@ Matrix Matrix::rotateZ(double angle) {
     res.matr[1][1] = cosinus;
     return res;
 }
+
+Matrix Matrix::angleProjection(double k, double alpha) {
+    Matrix res(1);
+    double angle = RADIAN(alpha);
+    res.matr[2][2] = 0;
+    res.matr[2][0] = -k * cos(angle);
+    res.matr[2][1] = -k * sin(angle);
+    return res;
+}
