@@ -9,22 +9,8 @@
 void Canvas::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
 
-    this->frontView.setTransform(
-            Matrix::translate(Vector3D(width() / 4, height() / 4, 1)) * Matrix::scale(75) * Matrix::rotateZ(180));
-    this->frontView.draw(&painter);
-
-    this->sideView.setTransform(
-            Matrix::translate(Vector3D(width() / 4, height() * 3 / 4, 1)) * Matrix::scale(75) * Matrix::rotateZ(180) *
-            Matrix::rotateY(90));
-    this->sideView.draw(&painter);
-
-    this->topView.setTransform(
-            Matrix::translate(Vector3D(width() * 3 / 4, height() / 4, 1)) * Matrix::scale(75) * Matrix::rotateX(90));
-    this->topView.draw(&painter);
-
-
     this->rollView.setTransform(
-            Matrix::translate(Vector3D(width() * 3 / 4, height() * 3 / 4, 1)) * Matrix::scale(75) *
+            Matrix::translate(Vector3D(width() / 2, height() / 2, 1)) * Matrix::scale(100) *
             Matrix::rotateX(90 + angleX) * Matrix::rotateY(angleY)
     );
     this->rollView.draw(&painter);
@@ -54,4 +40,22 @@ void Canvas::keyPressEvent(QKeyEvent *event) {
     }
     update();
 
+}
+
+Vector3D Canvas::getCenter(QList<Polygon> polygons) {
+    double ox = 0;
+    double oy = 0;
+    double oz = 0;
+    int count = 0;
+
+            foreach(Polygon polygon, polygons) {
+                    foreach(Vector3D point, polygon.getPoints()) {
+                    ox += point.getX();
+                    oy += point.getY();
+                    oz += point.getZ();
+                    count++;
+                }
+        }
+
+    return {-ox / count, -oy / count, -oz / count};
 }

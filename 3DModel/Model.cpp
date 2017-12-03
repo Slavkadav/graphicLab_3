@@ -21,6 +21,7 @@ void Model::draw(QPainter *painter) {
         for (auto point:points) {
             qPolygon << QPointF(point.getX(), point.getY());
         }
+
         painter->drawPolygon(qPolygon);
     }
 }

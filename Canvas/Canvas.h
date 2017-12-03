@@ -8,11 +8,13 @@
 
 #include <QtWidgets/QWidget>
 #include "../3DModel/Model.h"
+#include "../3DModel/Polygon/Polygon.h"
 
 class Canvas : public QWidget {
 public:
     explicit Canvas(Model model);
 
+    static Vector3D getCenter(QList<Polygon> polygons);
 private:
     Model frontView;
     Model sideView;

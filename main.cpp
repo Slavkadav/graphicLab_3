@@ -60,15 +60,15 @@ void parseObjFile(const QString &fileName, QStringList comments, QVector<QOpenGL
 
                         if (vt.count() > 0) // check if really there are any UV coords
                         {
-                            triangle.p1UV = vt.at(lineParts.at(1).split("/").at(1).toInt() - 1);
-                            triangle.p2UV = vt.at(lineParts.at(2).split("/").at(1).toInt() - 1);
-                            triangle.p3UV = vt.at(lineParts.at(3).split("/").at(1).toInt() - 1);
+                            vt.at(lineParts.at(1).split("/").at(1).toInt() - 1);
+                            vt.at(lineParts.at(2).split("/").at(1).toInt() - 1);
+                            vt.at(lineParts.at(3).split("/").at(1).toInt() - 1);
                         }
 
                         // get normals from vn array
-                        triangle.p1Normal = vn.at(lineParts.at(1).split("/").at(2).toInt() - 1);
-                        triangle.p2Normal = vn.at(lineParts.at(2).split("/").at(2).toInt() - 1);
-                        triangle.p3Normal = vn.at(lineParts.at(3).split("/").at(2).toInt() - 1);
+                        vn.at(lineParts.at(1).split("/").at(2).toInt() - 1);
+                        vn.at(lineParts.at(2).split("/").at(2).toInt() - 1);
+                        vn.at(lineParts.at(3).split("/").at(2).toInt() - 1);
 
                         triangles.append(triangle);
                     }

@@ -16,12 +16,6 @@ struct QOpenGLTriangle3D {
     QVector3D p1;
     QVector3D p2;
     QVector3D p3;
-    QVector3D p1Normal;
-    QVector3D p2Normal;
-    QVector3D p3Normal;
-    QVector2D p1UV;
-    QVector2D p2UV;
-    QVector2D p3UV;
 };
 
 class Model {

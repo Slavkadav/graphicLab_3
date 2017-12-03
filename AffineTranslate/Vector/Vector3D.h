@@ -32,6 +32,11 @@ public:
     Vector3D &operator=(double f);
 
     friend double operator&(const Vector3D &u, const Vector3D &v);
+
+    static bool
+    intersects(Vector3D a, Vector3D b, Vector3D c, Vector3D d, double *zAb, double *zCD, bool isLine = false);
+
+    double getZ(double ox, double oy, double Ax, double Ay, double Az, double Bx, double By, double Bz);
 };
 
 
