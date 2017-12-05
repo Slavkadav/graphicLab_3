@@ -48,10 +48,10 @@ void Vector3D::setZ(double z) {
     Vector3D::z = z;
 }
 
-bool
-Vector3D::intersects(Vector3D a, Vector3D b, Vector3D c, Vector3D d, double *zAB, double *zCD, bool isLine = false) {
+bool Vector3D::intersects(Vector3D a, Vector3D b, Vector3D c, Vector3D d, double *zAB, double *zCD) {
     *zAB = 0;
     *zCD = 0;
+    bool isLine = false;
     auto ab = new Vector3D(b.getX() - a.getX(), b.getY() - a.getY(), 0);
     auto cd = new Vector3D(d.getX() - c.getX(), d.getY() - c.getY(), 0);
     double A1 = -ab->getY();
@@ -81,11 +81,11 @@ Vector3D::intersects(Vector3D a, Vector3D b, Vector3D c, Vector3D d, double *zAB
         if (!(qMin(c.getY(), d.getY()) <= oy && oy <= qMax(c.getY(), d.getY()))) return false;
     }
 
-    *zAB = getZ(ox, oy, a.getX(), a.getY(), a.getZ(), b.getX(), b.getY(), b.getZ());
-    *zCD = getZ(ox, oy, c.getX(), c.getY(), c.getZ(), d.getX(), d.getY(), d.getZ());
+    *zAB = getZ1(ox, oy, a.getX(), a.getY(), a.getZ(), b.getX(), b.getY(), b.getZ());
+    *zCD = getZ1(ox, oy, c.getX(), c.getY(), c.getZ(), d.getX(), d.getY(), d.getZ());
 }
 
-double Vector3D::getZ(double ox, double oy, double Ax, double Ay, double Az, double Bx, double By, double Bz) {
+double Vector3D::getZ1(double ox, double oy, double Ax, double Ay, double Az, double Bx, double By, double Bz) {
     if (qAbs(Bx - Ax) > qAbs(By - Ay)) {
         return (ox - Ax) / (Bx - Ax) * (Bz - Az) + Az;
     }
@@ -96,4 +96,22 @@ double Vector3D::getZ(double ox, double oy, double Ax, double Ay, double Az, dou
     if (qAbs(Bx - Ax) < 1e-6) { return 0; }
 
     return (ox - Ax) / (Bx - Ax) * (Bz - Az) + Az;
+}
+
+void Vector3D::normalize() {
+    x /= h;
+    y /= h;
+    z /= h;
+    h = 1;
+}
+
+bool Vector3D::operator==(const Vector3D &rhs) const {
+    return x == rhs.x &&
+           y == rhs.y &&
+           z == rhs.z &&
+           h == rhs.h;
+}
+
+bool Vector3D::operator!=(const Vector3D &rhs) const {
+    return !(rhs == *this);
 }

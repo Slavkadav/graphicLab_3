@@ -27,6 +27,11 @@ protected:
 
     void keyPressEvent(QKeyEvent *event) override;
 
+    Polygon GetPolygon(QList<Polygon> polygons, QPoint location);
+
+    void loadObj();
+
+    Polygon getPolygon(QList<Polygon> polygons, QPoint location);
 };
 
 

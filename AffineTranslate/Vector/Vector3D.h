@@ -7,7 +7,7 @@
 
 
 class Vector3D {
-    double x{}, y{}, z{};
+    double x{}, y{}, z{}, h = 1;
 public:
     double getX() const;
 
@@ -33,10 +33,16 @@ public:
 
     friend double operator&(const Vector3D &u, const Vector3D &v);
 
-    static bool
-    intersects(Vector3D a, Vector3D b, Vector3D c, Vector3D d, double *zAb, double *zCD, bool isLine = false);
+    bool operator==(const Vector3D &rhs) const;
 
-    double getZ(double ox, double oy, double Ax, double Ay, double Az, double Bx, double By, double Bz);
+    bool operator!=(const Vector3D &rhs) const;
+
+    static bool
+    intersects(Vector3D a, Vector3D b, Vector3D c, Vector3D d, double *zAb, double *zCD);
+
+    static double getZ1(double ox, double oy, double Ax, double Ay, double Az, double Bx, double By, double Bz);
+
+    void normalize();
 };
 
 

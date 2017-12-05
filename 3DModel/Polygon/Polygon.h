@@ -25,13 +25,31 @@ public:
 
     void findMiddleZ();
 
+    const QColor &getColor() const;
+
+    void setColor(const QColor &color);
+
+    void setPoints(const QList<Vector3D> &points);
+
+    qreal getAvgDepth() const;
+
+    void setAvgDepth(qreal avgDepth);
+
+    int getId() const;
+
+    void setId(int id);
+
+    bool operator==(const Polygon &rhs) const;
+
+    bool operator!=(const Polygon &rhs) const;
+
     bool inside(Vector3D point);
 
-    int cover(Polygon p1, Polygon p2);
+    static int cover(Polygon p1, Polygon p2);
 
-    int intersectsPinP(Vector3D E, Vector3D v0, Vector3D v1, Vector3D v2);
+    static int intersectsPinP(Vector3D E, Vector3D v0, Vector3D v1, Vector3D v2);
 
-    QList<Polygon> sort(QList<Polygon> polygons);
+    static QList<Polygon> sort(QList<Polygon> polygons);
 };
 
 

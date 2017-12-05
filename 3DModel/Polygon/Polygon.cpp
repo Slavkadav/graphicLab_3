@@ -72,7 +72,7 @@ int Polygon::cover(Polygon p1, Polygon p2) {
     }
     if (f || m) {
         auto center = m ? p1 : p2;
-        QList list;
+        QList<Polygon> list;
         list.append(f ? p1 : p2);
         return intersectsPinP(
                 Canvas::getCenter(list),
@@ -111,18 +111,57 @@ const QList<Vector3D> &Polygon::getPoints() const {
 
 
 QList<Polygon> Polygon::sort(QList<Polygon> polygons) {
-    QList list;
+    QList<Polygon> list;
 
     while (polygons.length() > 0) {
         auto p = polygons[0];
-                foreach(Polygon polygon, polygons) {
-                if (cover(p, polygon) == -1) {
-                    p = polygon;
-                }
+        for (const auto &polygon : polygons) {
+            if (cover(p, polygon) == -1) {
+                p = polygon;
             }
+        }
         list.append(p);
         polygons.removeAll(p);
     }
 
     return list;
+}
+
+void Polygon::setPoints(const QList<Vector3D> &points) {
+    Polygon::points = points;
+}
+
+qreal Polygon::getAvgDepth() const {
+    return avgDepth;
+}
+
+void Polygon::setAvgDepth(qreal avgDepth) {
+    Polygon::avgDepth = avgDepth;
+}
+
+int Polygon::getId() const {
+    return id;
+}
+
+void Polygon::setId(int id) {
+    Polygon::id = id;
+}
+
+const QColor &Polygon::getColor() const {
+    return color;
+}
+
+void Polygon::setColor(const QColor &color) {
+    Polygon::color = color;
+}
+
+bool Polygon::operator==(const Polygon &rhs) const {
+    return points == rhs.points &&
+           color == rhs.color &&
+           avgDepth == rhs.avgDepth &&
+           id == rhs.id;
+}
+
+bool Polygon::operator!=(const Polygon &rhs) const {
+    return !(rhs == *this);
 }

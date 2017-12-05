@@ -11,6 +11,7 @@
 #include <QtGui/QPainter>
 #include "../AffineTranslate/Vector/Vector3D.h"
 #include "../AffineTranslate/Matrix/Matrix.h"
+#include "Polygon/Polygon.h"
 
 struct QOpenGLTriangle3D {
     QVector3D p1;
@@ -21,15 +22,23 @@ struct QOpenGLTriangle3D {
 class Model {
 
     QVector<QOpenGLTriangle3D> polygons;
+    QList<Polygon> pol3d;
     Matrix transform;
 public:
     explicit Model(const QVector<QOpenGLTriangle3D> &model);
+
+
+    const QVector<QOpenGLTriangle3D> &getPolygons() const;
 
     Model();
 
     void draw(QPainter *painter);
 
     void setTransform(const Matrix &transform);
+
+    QList<Polygon> draw3D();
+
+    Polygon getPolygon(QList<Polygon> polygons, QPoint location);
 };
 
 

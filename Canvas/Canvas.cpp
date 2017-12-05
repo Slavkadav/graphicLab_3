@@ -58,4 +58,8 @@ Vector3D Canvas::getCenter(QList<Polygon> polygons) {
         }
 
     return {-ox / count, -oy / count, -oz / count};
+
+
 }
+
+
